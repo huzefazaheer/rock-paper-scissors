@@ -1,9 +1,9 @@
 console.log("Javascript loaded!");
 
 function getComputerChoice() {
-  let choice = Math.floor(Math.random(3));
+  let compChoice = Math.floor(Math.random(3));
 
-  switch (choice) {
+  switch (compChoice) {
     case 0:
       console.log("The computer choose Rock");
       break;
@@ -17,7 +17,27 @@ function getComputerChoice() {
       console.log("An unexpected error has occured");
       break;
   }
-  return choice;
+  return compChoice;
 }
 
+function getUserChoice() {
+  let userChoice = prompt("Enter your choice");
+
+  switch (userChoice.toLowerCase()) {
+    case "rock":
+      console.log("You choose Rock");
+      return 0;
+    case "paper":
+      console.log("You choose Paper");
+      return 1;
+    case "scissors":
+      console.log("You choose Scissors");
+      return 2;
+    default:
+      console.log("invalid choice");
+      getUserChoice();
+  }
+}
+
+getUserChoice();
 getComputerChoice();
