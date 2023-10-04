@@ -6,38 +6,53 @@ function getComputerChoice() {
   switch (compChoice) {
     case 0:
       console.log("The computer choose Rock");
-      break;
+      return "rock";
     case 1:
       console.log("The computer choose Paper");
-      break;
+      return "paper";
     case 2:
       console.log("The computer choose Scissors");
-      break;
+      return "scissor";
     default:
       console.log("An unexpected error has occured");
       break;
   }
-  return compChoice;
 }
 
 function getUserChoice() {
   let userChoice = prompt("Enter your choice");
-
-  switch (userChoice.toLowerCase()) {
+  correctedChoice = userChoice.toLowerCase();
+  switch (correctedChoice) {
     case "rock":
       console.log("You choose Rock");
-      return 0;
+      break;
     case "paper":
       console.log("You choose Paper");
-      return 1;
-    case "scissors":
+      break;
+    case "scissor":
       console.log("You choose Scissors");
-      return 2;
+      break;
     default:
       console.log("invalid choice");
       getUserChoice();
   }
+  return correctedChoice;
 }
 
-getUserChoice();
-getComputerChoice();
+function playRound(playerSel, compSel) {
+  let result = "null";
+
+  if (playerSel === compSel) {
+    result = "draw";
+  } else if (playerSel === "rock") {
+    compSel === "paper" ? (result = "comp") : (result = "usr");
+  } else if (playerSel === "paper") {
+    compSel === "scissor" ? (result = "comp") : (result = "usr");
+  } else if (playerSel === "scissor") {
+    compSel === "rock" ? (result = "comp") : (result = "usr");
+  }
+
+  console.log(result);
+}
+
+playRound(getUserChoice(), getComputerChoice());
