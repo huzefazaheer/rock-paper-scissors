@@ -1,17 +1,21 @@
 console.log("Javascript loaded!");
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 function getComputerChoice() {
-  let compChoice = Math.floor(Math.random(3));
+  let compChoice = getRandomInt(3);
 
   switch (compChoice) {
     case 0:
-      console.log("The computer choose Rock");
+      console.log("The computer chooses Rock");
       return "rock";
     case 1:
-      console.log("The computer choose Paper");
+      console.log("The computer chooses Paper");
       return "paper";
     case 2:
-      console.log("The computer choose Scissors");
+      console.log("The computer chooses Scissors");
       return "scissor";
     default:
       console.log("An unexpected error has occured");
@@ -52,7 +56,28 @@ function playRound(playerSel, compSel) {
     compSel === "rock" ? (result = "comp") : (result = "usr");
   }
 
-  console.log(result);
+  console.log(result.toUpperCase() + " wins that round");
+  return result;
 }
 
-playRound(getUserChoice(), getComputerChoice());
+function game() {
+  let userWon = 0;
+  let compWon = 0;
+
+  for (i = 0; i < 5; i++) {
+    result = playRound(getUserChoice(), getComputerChoice());
+    if (result != "draw") {
+      result == "usr" ? userWon++ : compWon++;
+    }
+  }
+
+  if (userWon == compWon) {
+    console.log("You both drew");
+  } else {
+    userWon > compWon
+      ? console.log("You have won")
+      : console.log("The browser has won");
+  }
+}
+
+game();
