@@ -4,6 +4,7 @@ const compchoicetxt = document.querySelector(".compchoice");
 const userchoicetxt = document.querySelector(".usrchoice");
 const resulttxt = document.querySelector(".result");
 const gamenotxt = document.querySelector(".gameno");
+const gameresulttxt = document.querySelector(".gameresult");
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -11,7 +12,7 @@ function getRandomInt(max) {
 
 function getComputerChoice() {
   let compChoice = getRandomInt(3);
-  let correctedCompChoice = "null";
+  let correctedCompChoice = "";
 
   switch (compChoice) {
     case 0:
@@ -28,8 +29,8 @@ function getComputerChoice() {
       break;
   }
 
-  compchoicetxt.innerHTML = "You choose " + correctedCompChoice;
-  return compChoice;
+  compchoicetxt.innerHTML = "Computer chose " + correctedCompChoice;
+  return correctedCompChoice;
 }
 
 function getUserChoice(e) {
@@ -45,7 +46,7 @@ function getUserChoice(e) {
       userChoice = "scissor";
       break;
   }
-  userchoicetxt.innerHTML = "You choose " + userChoice;
+  userchoicetxt.innerHTML = "You chose " + userChoice;
   return userChoice;
 }
 
@@ -66,31 +67,33 @@ function playRound(playerSel, compSel) {
   return result;
 }
 
-function game() {
-  let userWon = 0;
-  let compWon = 0;
-
-  for (i = 0; i < 5; i++) {
-    result = playRound(userChoice, getComputerChoice());
+let gamesPlayed = 0;
+let userWon = 0;
+let compWon = 0;
+function game(e) {
+  if (gamesPlayed < 5) {
+    result = playRound(getUserChoice(e), getComputerChoice());
     if (result != "draw") {
       result == "usr" ? userWon++ : compWon++;
     }
-  }
-
-  if (userWon == compWon) {
-    console.log("You both drew");
+    gameresulttxt.innerHTML = "You: " + userWon + " ~ Comp: " + compWon;
+    gamesPlayed++;
+    gamenotxt.innerHTML = gamesPlayed;
   } else {
-    userWon > compWon
-      ? console.log("You have won")
-      : console.log("The browser has won");
+    if (userWon == compWon) {
+      gameresulttxt.innerHTML = "You both drew";
+    } else {
+      let winner = "";
+      userWon > compWon
+        ? (gameresulttxt.innerHTML = "You have won")
+        : (gameresulttxt.innerHTML = "The browser has won");
+    }
+    gamesPlayed = 0;
+    userWon = 0;
+    compWon = 0;
   }
 }
 
 const buttons = document.querySelector(".buttons");
 
-let i = 0;
-buttons.addEventListener("click", (e) => {
-  playRound(getUserChoice(e), getComputerChoice());
-  i++;
-  gamenotxt.innerHTML = i;
-});
+buttons.addEventListener("click", game);
