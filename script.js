@@ -74,16 +74,36 @@ let userWon = 0;
 let compWon = 0;
 function game(e) {
   if (gamesPlayed < 5) {
+    gamesPlayed++;
+    gameresulttxt.innerHTML = "";
+    gamenotxt.innerHTML = "○ ○ ○ ○ ○";
     result = playRound(getUserChoice(e), getComputerChoice());
     if (result != "draw") {
       result == "usr" ? userWon++ : compWon++;
     }
-    gameresulttxt.innerHTML = "You: " + userWon + " ~ Comp: " + compWon;
     userscoretxt.innerHTML = userWon;
     compscoretxt.innerHTML = compWon;
-    gamesPlayed++;
-    gamenotxt.innerHTML = gamesPlayed;
-  } else {
+
+    // display number of games played
+    switch (gamesPlayed) {
+      case 1:
+        gamenotxt.innerHTML = "◉ ○ ○ ○ ○";
+        break;
+      case 2:
+        gamenotxt.innerHTML = "◉ ◉ ○ ○ ○";
+        break;
+      case 3:
+        gamenotxt.innerHTML = "◉ ◉ ◉ ○ ○";
+        break;
+      case 4:
+        gamenotxt.innerHTML = "◉ ◉ ◉ ◉ ○";
+        break;
+      case 5:
+        gamenotxt.innerHTML = "◉ ◉ ◉ ◉ ◉";
+        break;
+    }
+  }
+  if (gamesPlayed == 5) {
     if (userWon == compWon) {
       gameresulttxt.innerHTML = "You both drew";
     } else {

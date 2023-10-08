@@ -13,14 +13,15 @@ nav {
 .game {
   text-align: center;
   align-self: center;
+  flex-basis: 15%;
+  font-family: "Roboto", sans-serif;
 }
 
 .user,
 .comp {
   font-size: 2em;
   font-weight: bolder;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", sans-serif;
   max-width: 210px;
 }
 
