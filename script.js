@@ -5,6 +5,8 @@ const userchoicetxt = document.querySelector(".usrchoice");
 const resulttxt = document.querySelector(".result");
 const gamenotxt = document.querySelector(".gameno");
 const gameresulttxt = document.querySelector(".gameresult");
+const userscoretxt = document.querySelector(".userscore");
+const compscoretxt = document.querySelector(".compscore");
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -77,6 +79,8 @@ function game(e) {
       result == "usr" ? userWon++ : compWon++;
     }
     gameresulttxt.innerHTML = "You: " + userWon + " ~ Comp: " + compWon;
+    userscoretxt.innerHTML = userWon;
+    compscoretxt.innerHTML = compWon;
     gamesPlayed++;
     gamenotxt.innerHTML = gamesPlayed;
   } else {

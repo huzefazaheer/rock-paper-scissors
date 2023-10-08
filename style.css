@@ -1,0 +1,51 @@
+.flexdisplay {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+nav {
+  text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 2em;
+}
+
+.game {
+  text-align: center;
+  align-self: center;
+}
+
+.user,
+.comp {
+  font-size: 2em;
+  font-weight: bolder;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  max-width: 210px;
+}
+
+h1 {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 6em;
+  font-weight: bold;
+}
+
+.buttons {
+  text-align: center;
+}
+
+button {
+  margin: 0 0.5em;
+  padding: 1em 2em;
+  background-color: white;
+  border: 2px solid black;
+  font-family: "Roboto", sans-serif;
+  border-radius: 6px;
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+  transition-duration: 0.4s;
+}
