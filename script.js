@@ -1,46 +1,52 @@
 console.log("Javascript loaded!");
 
+const compchoicetxt = document.querySelector(".compchoice");
+const userchoicetxt = document.querySelector(".usrchoice");
+const resulttxt = document.querySelector(".result");
+const gamenotxt = document.querySelector(".gameno");
+
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
 function getComputerChoice() {
   let compChoice = getRandomInt(3);
+  let correctedCompChoice = "null";
 
   switch (compChoice) {
     case 0:
-      console.log("The computer chooses Rock");
-      return "rock";
+      correctedCompChoice = "rock";
+      break;
     case 1:
-      console.log("The computer chooses Paper");
-      return "paper";
+      correctedCompChoice = "paper";
+      break;
     case 2:
-      console.log("The computer chooses Scissors");
-      return "scissor";
+      correctedCompChoice = "scissor";
+      break;
     default:
       console.log("An unexpected error has occured");
       break;
   }
+
+  compchoicetxt.innerHTML = "You choose " + correctedCompChoice;
+  return compChoice;
 }
 
-function getUserChoice() {
-  let userChoice = prompt("Enter your choice");
-  correctedChoice = userChoice.toLowerCase();
-  switch (correctedChoice) {
+function getUserChoice(e) {
+  let userChoice = "null";
+  switch (e.target.id) {
     case "rock":
-      console.log("You choose Rock");
+      userChoice = "rock";
       break;
     case "paper":
-      console.log("You choose Paper");
+      userChoice = "paper";
       break;
     case "scissor":
-      console.log("You choose Scissors");
+      userChoice = "scissor";
       break;
-    default:
-      console.log("invalid choice");
-      getUserChoice();
   }
-  return correctedChoice;
+  userchoicetxt.innerHTML = "You choose " + userChoice;
+  return userChoice;
 }
 
 function playRound(playerSel, compSel) {
@@ -56,7 +62,7 @@ function playRound(playerSel, compSel) {
     compSel === "rock" ? (result = "comp") : (result = "usr");
   }
 
-  console.log(result.toUpperCase() + " wins that round");
+  resulttxt.innerHTML = result.toUpperCase() + " wins that round";
   return result;
 }
 
@@ -65,7 +71,7 @@ function game() {
   let compWon = 0;
 
   for (i = 0; i < 5; i++) {
-    result = playRound(getUserChoice(), getComputerChoice());
+    result = playRound(userChoice, getComputerChoice());
     if (result != "draw") {
       result == "usr" ? userWon++ : compWon++;
     }
@@ -80,4 +86,11 @@ function game() {
   }
 }
 
-game();
+const buttons = document.querySelector(".buttons");
+
+let i = 0;
+buttons.addEventListener("click", (e) => {
+  playRound(getUserChoice(e), getComputerChoice());
+  i++;
+  gamenotxt.innerHTML = i;
+});
