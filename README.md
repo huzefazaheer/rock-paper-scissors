@@ -1,2 +1,4 @@
 # rock-paper-scissors
-rock paper scissors for the Odin Project
+A minimalistic rock paper scissors webapp.
+
+[Live Demo](https://huzefazaheer.github.io/rock-paper-scissors/)
